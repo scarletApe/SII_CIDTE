@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.Usuario" table="Usuario"> 
+      <meta attribute="class-description">
+         Esta clase representa el usuario para poder hacer log in.
+      </meta>
+      <id name="id_usuario" type="int" column="id_usuario">
+         <generator class="native"/>
+      </id>
+      <property name="username" column="username" type="string"/> 
+      <property name="password" column="password" type="string"/> 
+      
+      <many-to-one name="tipoUsario" column="id_tipousario"
+                   class="org.cidte.sii.entidades.TipoUsuario" not-null="true"/>
+      
+      <property name="nombre"   column="nombre"     type="string"/> 
+      <property name="apaterno" column="apaterno"   type="string"/> 
+      <property name="amaterno" column="amaterno"   type="string"/> 
+      <property name="calle"    column="calle"      type="string"/> 
+      <property name="colonia"  column="colonia"    type="string"/> 
+      <property name="ciudad"   column="ciudad"     type="string"/> 
+      <property name="estado"   column="estado"     type="string"/> 
+      <property name="codigopostal" column="codigopostal" type="int"/> 
+      <property name="telefono" column="telefono"   type="int"/> 
+      <property name="email"    column="email"      type="string"/> 
+   </class>
+
+</hibernate-mapping>

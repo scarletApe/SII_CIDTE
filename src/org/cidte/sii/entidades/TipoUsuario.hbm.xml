@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.TipoUsuario" table="TipoUsuario"> 
+      <meta attribute="class-description">
+         Esta clase representa el tipo usuario para poder ver que privilegios tiene.
+      </meta>
+      <id name="id_tipousario" type="int" column="id_tipousario">
+         <generator class="native"/>
+      </id>
+      
+      <property name="nombre"      column="nombre"      type="string"/> 
+      <property name="descripcion" column="descripcion" type="string"/> 
+
+   </class>
+
+</hibernate-mapping>

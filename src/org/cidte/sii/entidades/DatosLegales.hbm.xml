@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.DatosLegales" table="DatosLegales"> 
+      <meta attribute="class-description">
+         Esta clase representa los datos legales del usuario.
+      </meta>
+      <id name="id" type="int" column="id_dl">
+         <generator class="native"/>
+      </id>
+      
+      <many-to-one name="curp" column="curp" unique="true"
+        class="org.cidte.sii.entidades.Usuario" not-null="true"/>
+      
+      <property name="nacionalidad"     column="nacionalidad"   type="string"/> 
+      <property name="visa_americana"   column="visa_americana" type="string"/> 
+      <property name="id_pasaporte"     column="id_pasaporte"   type="string"/> 
+      
+      <property name="vijencia_pasaporte"     column="vijencia_pasaporte"   type="date"/> 
+      <property name="licencia_manejo"   column="licencia_manejo" type="string"/> 
+      <property name="vijencia_licencia"     column="vijencia_licencia"   type="date"/> 
+
+   </class>
+
+</hibernate-mapping>

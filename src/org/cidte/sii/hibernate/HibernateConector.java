@@ -6,11 +6,14 @@
 package org.cidte.sii.hibernate;
 
 import java.util.List;
+import org.cidte.sii.entidades.Nomina;
+import org.cidte.sii.entidades.TipoContratacion;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -24,7 +27,12 @@ public class HibernateConector {
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml)
-            factory = new Configuration().configure().buildSessionFactory();
+//            factory = new Configuration().configure().buildSessionFactory();
+            factory = new AnnotationConfiguration().configure().
+                    //addPackage("com.xyz") //add package if used. 
+                    addAnnotatedClass(TipoContratacion.class)
+                    .addAnnotatedClass(Nomina.class)
+                    .buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);

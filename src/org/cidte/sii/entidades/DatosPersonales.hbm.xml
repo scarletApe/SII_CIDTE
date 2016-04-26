@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.DatosPersonales" table="DatosPersonales"> 
+      <meta attribute="class-description">
+         Esta clase representa los datos personales del usuario.
+      </meta>
+      <id name="id" type="int" column="id_dp">
+         <generator class="native"/>
+      </id>
+      
+      <many-to-one name="curp" column="curp" unique="true"
+        class="org.cidte.sii.entidades.Usuario" not-null="true"/>
+      
+      <property name="religion"         column="religion"     type="string"/> 
+      <property name="estado_civil"     column="estado_civil" type="string"/> 
+      <property name="talla_altura"     column="talla_altura" type="int"/> 
+      <property name="talla_cintura"    column="talla_cintura" type="int"/> 
+      <property name="talla_cuello"     column="talla_cuello" type="int"/> 
+      <property name="talla_calzado"    column="talla_calzado" type="int"/> 
+
+   </class>
+
+</hibernate-mapping>

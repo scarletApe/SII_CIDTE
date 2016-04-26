@@ -16,13 +16,15 @@ public class TipoUsuario {
     private int id_tipousario;
     private String nombre;
     private String descripcion;
+    private String rol;
 
     public TipoUsuario() {
     }
 
-    public TipoUsuario(String nombre, String descripcion) {
+    public TipoUsuario(String nombre, String descripcion, String rol) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.rol = rol;
     }
 
     public int getId_tipousario() {
@@ -47,6 +49,14 @@ public class TipoUsuario {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @Override
@@ -80,7 +90,7 @@ public class TipoUsuario {
 
     @Override
     public String toString() {
-        return "TipoUsuario{" + "id_tipousario=" + id_tipousario + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+        return rol +" "+nombre;
     }
 
 }

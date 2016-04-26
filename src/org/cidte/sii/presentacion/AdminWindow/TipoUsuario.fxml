@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="615.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cidte.sii.presentacion.AdminWindow.TipoUsuarioController">
+   <children>
+      <TabPane fx:id="tabPane" stylesheets="@../../css/Metro-UI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab fx:id="tabTU" text="Tipo Usuarios">
+               <content>
+                  <AnchorPane id="AnchorPane" style="-fx-background-color: white;">
+                     <children>
+                        <AnchorPane fx:id="paneTabel" layoutY="91.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
+                           <children>
+                              <TableView fx:id="tableTU" layoutX="7.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+                                 <columns>
+                                    <TableColumn fx:id="colAction" prefWidth="130.0" text="ID">
+                                       <graphic>
+                                          <ImageView fitHeight="30.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" smooth="false">
+                                             <image>
+                                                <Image url="@../../../../../../JavaFX-MetroUI-master/src/herudi/img/tabel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colProductId" prefWidth="135.0" text="Nombre">
+                                       <graphic>
+                                          <ImageView fitHeight="30.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" smooth="false">
+                                             <image>
+                                                <Image url="@../../../../../../JavaFX-MetroUI-master/src/herudi/img/tabel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colManufacturerIid" prefWidth="165.0" text="A Paterno">
+                                       <graphic>
+                                          <ImageView fitHeight="30.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" smooth="false">
+                                             <image>
+                                                <Image url="@../../../../../../JavaFX-MetroUI-master/src/herudi/img/tabel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <HBox layoutX="776.0" layoutY="48.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="48.0">
+                           <children>
+                              <Button fx:id="btnEliminar" defaultButton="true" layoutX="738.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleEliminar" prefHeight="27.0" styleClass="btn" text="Eliminar" />
+                              <Button fx:id="btnModificar" defaultButton="true" layoutX="904.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleModificar" prefHeight="27.0" styleClass="btn" text="Modificar" />
+                              <Button fx:id="btnActualizar" defaultButton="true" layoutX="1066.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleNuevo" prefHeight="27.0" styleClass="btn" text="Actualizar Tabla" />
+                           </children>
+                        </HBox>
+                        <ProgressBar fx:id="bar" layoutY="84.0" prefHeight="3.0" progress="0.0" />
+                        <Label fx:id="lbTitleTU" layoutX="14.0" layoutY="24.0" text="Tipo Usuarios" textFill="#2b579a">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="110.0" layoutY="83.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="83.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabRMTU" text="Registrar/Modificar Tipo Usuario">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <GridPane hgap="10.0" layoutX="14.0" layoutY="55.0" prefHeight="263.0" prefWidth="1087.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="55.0">
+                           <children>
+                              <Label fx:id="lbID" text="ID:" />
+                              <Label fx:id="lbNom" text="Nombre:" GridPane.rowIndex="1" />
+                              <Label fx:id="lbDesc" text="Descripción:" GridPane.rowIndex="2" />
+                              <Label fx:id="lbRol" text="Rol:" GridPane.rowIndex="3" />
+                              <TextField fx:id="tfID" disable="true" maxWidth="414.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="tfNom" maxWidth="414.0" promptText="obligatorio" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cbRol" maxWidth="414.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="tfDesc" maxWidth="414.0" promptText="obligatorio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                        <Label fx:id="lbTitleRM" layoutX="14.0" layoutY="14.0" text="Datos del Tipo Usuario" textFill="#2b579a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutY="52.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <HBox layoutX="930.0" layoutY="16.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="16.0">
+                           <children>
+                              <Button fx:id="btnLimpiar" defaultButton="true" mnemonicParsing="false" onAction="#handleLimpiar" prefHeight="27.0" styleClass="btn" text="Limpiar" />
+                              <Button fx:id="btnGuardar" defaultButton="true" mnemonicParsing="false" onAction="#handleGuardar" prefHeight="27.0" styleClass="btn" text="Guardar" />
+                           </children>
+                        </HBox>
+                        <GridPane layoutX="14.0" layoutY="368.0" prefHeight="168.0" prefWidth="776.0">
+                           <children>
+                              <Label fx:id="lbRH" text="RH - Recursos Humanos:" />
+                              <Label fx:id="lbRM" text="RM - Recusos Materiales:" GridPane.rowIndex="1" />
+                              <Label fx:id="lbRF" text="RF - Recurosos Financieros:" GridPane.rowIndex="2" />
+                              <Label fx:id="lbIDE" text="IDE - Investigación Docencias Extencion y Difución:" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="cbRH_V" mnemonicParsing="false" text="Ver" GridPane.columnIndex="1" />
+                              <CheckBox fx:id="cbRM_V" mnemonicParsing="false" text="Ver" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbRF_V" mnemonicParsing="false" text="Ver" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbIDE_V" mnemonicParsing="false" text="Ver" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="cbRH_C" mnemonicParsing="false" text="Crear" GridPane.columnIndex="2" />
+                              <CheckBox fx:id="cbRM_C" mnemonicParsing="false" text="Crear" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbRF_C" mnemonicParsing="false" text="Crear" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbIDE_C" mnemonicParsing="false" text="Crear" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="cbRH_ME" mnemonicParsing="false" text="Modificar/Eliminar" GridPane.columnIndex="3" />
+                              <CheckBox fx:id="cbRM_ME" mnemonicParsing="false" text="Modificar/Eliminar" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbRF_ME" mnemonicParsing="false" text="Modificar/Eliminar" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbIDE_ME" mnemonicParsing="false" text="Modificar/Eliminar" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="285.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                        <Separator layoutX="6.0" layoutY="357.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="lbTitleModulos" layoutX="14.0" layoutY="321.0" text="Permisos a Modulos" textFill="#2b579a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

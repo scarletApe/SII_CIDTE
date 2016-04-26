@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1200.0" stylesheets="@../../css/Metro-UI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cidte.sii.presentacion.AdminWindow.AdministrarController">
+   <children>
+      <AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" pickOnBounds="false" snapToPixel="true" style="-fx-border-color: #2b579a; -fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="TitleLabel" fx:id="lbTitle" alignment="CENTER" layoutX="2.0" layoutY="-3.0" mouseTransparent="true" prefHeight="38.0" prefWidth="738.0" text="Panel de Administrador" textFill="#a1a1a1" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="613.0" prefWidth="136.0" style="-fx-background-color: #2b579a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ListView fx:id="listMenu" layoutX="-3.0" layoutY="78.0" prefHeight="535.0" prefWidth="136.0" stylesheets="@../../css/listView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="78.0" />
+                  <Button fx:id="btnLogout" disable="true" layoutX="22.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/buttonCircle.css">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../imagenes/arrowLeft.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="138.0" layoutY="40.0" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: white;" styleClass="background" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+               <children>
+                  <ScrollPane layoutX="40.0" layoutY="72.0" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: white;" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane fx:id="paneData" style="-fx-background-color: white;" styleClass="background" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

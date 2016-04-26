@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.DatosGenerales" table="DatosGenerales"> 
+      <meta attribute="class-description">
+         Esta clase representa los datos generales del usuario.
+      </meta>
+      <id name="id" type="int" column="id_dg">
+         <generator class="native"/>
+      </id>
+      
+      <many-to-one name="usuario" column="curp" unique="true"
+        class="org.cidte.sii.entidades.Usuario" not-null="true"/>
+      
+      <property name="rfc"      column="rfc"     type="string"/> 
+      <property name="nombre"   column="nombre"     type="string"/> 
+      <property name="apaterno" column="apaterno"   type="string"/> 
+      <property name="amaterno" column="amaterno"   type="string"/> 
+      <property name="calle"    column="calle"      type="string"/> 
+      <property name="colonia"  column="colonia"    type="string"/> 
+      <property name="ciudad"   column="ciudad"     type="string"/> 
+      <property name="estado"   column="estado"     type="string"/> 
+      <property name="codigopostal"  column="codigopostal" type="int"/> 
+      <property name="numero_ext"    column="numero_ext"   type="int"/> 
+      <property name="numero_int"    column="numero_int"   type="int"/> 
+      <property name="telefono_casa" column="telefono_casa"   type="int"/> 
+      <property name="telefono_cell" column="telefono_cell"   type="int"/> 
+      <property name="telefono_oficina" column="telefono_oficina"   type="int"/> 
+      <property name="fecha_nacimiento" column="fecha_nacimiento"      type="date"/> 
+      <property name="sexo"     column="sexo"      type="string"/> 
+      <property name="foto"     column="foto"     type="binary"/> 
+      <property name="email"    column="email"      type="string"/> 
+   </class>
+
+</hibernate-mapping>

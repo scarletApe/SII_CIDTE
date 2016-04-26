@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1200.0" stylesheets="@../../css/Metro-UI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cidte.sii.presentacion.UserWindow.VentanaPrincipalController">
+   <children>
+      <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="100.0" prefWidth="1200.0" styleClass="background" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="ivLogo" fitHeight="80.0" fitWidth="280.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../../imagenes/empty.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbMensaje" layoutX="294.0" layoutY="18.0" text="Centro Investigacion Desarrollo CIDTE" textFill="#5a6a6f" AnchorPane.leftAnchor="310.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <HBox layoutX="1050.0" layoutY="50.0" spacing="10.0" AnchorPane.rightAnchor="14.0">
+               <children>
+                  <Button fx:id="btnMiCuenta" layoutX="1022.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleMiCuenta" styleClass="btn" text="Mi Cuenta" />
+                  <Button fx:id="btnSalir" layoutX="1127.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSalir" styleClass="btn" text="Salir" />
+               </children>
+            </HBox>
+            <Label fx:id="lbFecha" layoutX="689.0" layoutY="70.0" text="Fecha: 22-Mar-16 Tiempo: 10:36 pm" textFill="#5a6a6f" AnchorPane.leftAnchor="700.0" />
+            <ImageView fx:id="ivUsuario" fitHeight="80.0" fitWidth="70.0" layoutX="903.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="235.0">
+               <image>
+                  <Image url="@../../imagenes/person.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbUsuarioTexto" layoutX="294.0" layoutY="67.0" text="Bienvenido Juan Manuel Martinez Cabrera" textFill="#5a6a6f" AnchorPane.leftAnchor="313.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="ivBandera" fitHeight="24.0" fitWidth="35.0" layoutX="1151.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0">
+               <image>
+                  <Image url="@../../imagenes/flag_mx.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbIdioma" layoutX="1089.0" layoutY="20.0" text="Español" textFill="#5a6a6f" AnchorPane.rightAnchor="62.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="115.0" prefHeight="517.0" prefWidth="1200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <TabPane fx:id="tpEscritorio" layoutX="159.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab fx:id="tabDashboard" text="Dashboard">
+                     <content>
+                        <AnchorPane fx:id="apaneDashboard" />
+                     </content></Tab>
+                <Tab fx:id="tabRH" text="RH - Recursos Humanos">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="listRH" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="150.0" stylesheets="@../../css/listView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <AnchorPane fx:id="apaneRH" layoutX="166.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabRM" text="RM - Recursos Materiales">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="tabRF" text="RF - Recursos Financieros">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="tabIDE" text="IDE - Inv. Doc. Ext.">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="tabMiCuenta" text="Mi Cuenta">
+                    <content>
+                        <ScrollPane prefViewportHeight="507.0" prefViewportWidth="1200.0">
+                           <content>
+                            <AnchorPane fx:id="apaneMiCuenta" />
+                           </content>
+                        </ScrollPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

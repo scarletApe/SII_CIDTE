@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.Organizacion" table="Organizacion"> 
+      <meta attribute="class-description">
+         Esta clase representa a la Organizacion.
+      </meta>
+      <id name="id_organizacion" type="int" column="id_organizacion">
+         <generator class="native"/>
+      </id>
+      <property name="nombre"   column="nombre" type="string"/> 
+      <property name="mensaje"  column="mensaje" type="string"/> 
+      <property name="logo"   column="logo"     type="binary"/> 
+   </class>
+
+</hibernate-mapping>

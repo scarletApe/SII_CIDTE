@@ -30,8 +30,14 @@ and open the template in the editor.
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         
         <!-- List of XML mapping files --> 
-        <mapping resource="org/cidte/sii/entidades/Usuario.hbm.xml" class="org/cidte/sii/entidades/Usuario.java"/>
-        <mapping resource="org/cidte/sii/entidades/TipoUsuario.hbm.xml" class="org/cidte/sii/entidades/TipoUsuario.java"/>
+        <mapping resource="org/cidte/sii/entidades/Usuario.hbm.xml"         class="org/cidte/sii/entidades/Usuario.java"/>
+        <mapping resource="org/cidte/sii/entidades/DatosGenerales.hbm.xml"  class="org/cidte/sii/entidades/DatosGenerales.java"/>
+        <mapping resource="org/cidte/sii/entidades/DatosLegales.hbm.xml"    class="org/cidte/sii/entidades/DatosLegales.java"/>
+        <mapping resource="org/cidte/sii/entidades/DatosPersonales.hbm.xml" class="org/cidte/sii/entidades/DatosPersonales.java"/>
+        <mapping resource="org/cidte/sii/entidades/DatosMedicos.hbm.xml"    class="org/cidte/sii/entidades/DatosMedicos.java"/>
+        
+        <mapping resource="org/cidte/sii/entidades/Organizacion.hbm.xml" class="org/cidte/sii/entidades/Organizacion.java"/>
         <!--<mapping resource="entidades_config/BovVac.hbm.xml" class="entidades/BovVac.java"/>-->
+        <!--<mapping resource="org/cidte/sii/entidades/TipoUsuario.hbm.xml" class="org/cidte/sii/entidades/TipoUsuario.java"/>-->
     </session-factory>
 </hibernate-configuration>

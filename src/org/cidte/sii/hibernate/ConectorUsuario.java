@@ -32,8 +32,31 @@ public class ConectorUsuario {
     }
 
     public ArrayList<Usuario> getAll() {
-        String hql = "From Usuario";
-        return (ArrayList<Usuario>) HibernateConector.executeHQLQuery(hql);
+        ArrayList<Usuario> result = null;
+        String hql = "From Usuario ";
+        Session session = HibernateConector.factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery(hql);
+            result = (ArrayList) query.list();
+
+//            if (result != null && !result.isEmpty()) {
+//                for (Usuario b : result) {
+//                    Hibernate.initialize(b.getTipoUsario());
+//                }
+//            }
+            
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.err.println(he.getMessage());
+        } finally {
+            session.close();
+        }
+        return result;
     }
 
     public Usuario get(String username, String contrasena) {
@@ -54,9 +77,9 @@ public class ConectorUsuario {
             result = (ArrayList) query.list();
 
             if (result != null && !result.isEmpty()) {
-                for (Usuario b : result) {
-                    Hibernate.initialize(b.getTipoUsario());
-                }
+//                for (Usuario b : result) {
+//                    Hibernate.initialize(b.getTipoUsario());
+//                }
                 u = result.get(0);
             }
             

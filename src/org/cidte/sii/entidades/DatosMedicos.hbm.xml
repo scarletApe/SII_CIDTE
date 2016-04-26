@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   
+   <class name="org.cidte.sii.entidades.DatosMedicos" table="DatosMedicos"> 
+      <meta attribute="class-description">
+         Esta clase representa los datos medicos del usuario.
+      </meta>
+      <id name="id" type="int" column="id_dm">
+         <generator class="native"/>
+      </id>
+      
+      <many-to-one name="curp" column="curp" unique="true"
+        class="org.cidte.sii.entidades.Usuario" not-null="true"/>
+      
+      <property name="numero_ss"    column="numero_ss"  type="string"/> 
+      <property name="tipo_sangre"  column="tipo_sangre" type="string"/> 
+      <property name="peso"         column="peso"       type="int"/> 
+      <property name="lentes"       column="lentes"     type="string"/> 
+      <property name="alergias"     column="alergias"   type="string"/> 
+      <property name="discapacidades"  column="discapacidades"   type="string"/>
+      <property name="tratamiento_vida" column="tratamiento_vida" type="string"/>
+      <property name="entidad_medica" column="entidad_medica" type="string"/> 
+
+   </class>
+
+</hibernate-mapping>

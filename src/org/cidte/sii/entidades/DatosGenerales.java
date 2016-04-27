@@ -28,9 +28,9 @@ public class DatosGenerales {
     private int codigopostal;
     private int numero_ext;
     private int numero_int;
-    private int telefono_casa;
-    private int telefono_cell;
-    private int telefono_oficina;
+    private String telefono_casa;
+    private String telefono_cell;
+    private String telefono_oficina;
     private Date fecha_nacimiento;
     private String sexo;
     private byte[] foto;
@@ -147,27 +147,27 @@ public class DatosGenerales {
         this.numero_int = numero_int;
     }
 
-    public int getTelefono_casa() {
+    public String getTelefono_casa() {
         return telefono_casa;
     }
 
-    public void setTelefono_casa(int telefono_casa) {
+    public void setTelefono_casa(String telefono_casa) {
         this.telefono_casa = telefono_casa;
     }
 
-    public int getTelefono_cell() {
+    public String getTelefono_cell() {
         return telefono_cell;
     }
 
-    public void setTelefono_cell(int telefono_cell) {
+    public void setTelefono_cell(String telefono_cell) {
         this.telefono_cell = telefono_cell;
     }
 
-    public int getTelefono_oficina() {
+    public String getTelefono_oficina() {
         return telefono_oficina;
     }
 
-    public void setTelefono_oficina(int telefono_oficina) {
+    public void setTelefono_oficina(String telefono_oficina) {
         this.telefono_oficina = telefono_oficina;
     }
 
@@ -234,7 +234,7 @@ public class DatosGenerales {
 
     @Override
     public String toString() {
-        return "DatosGenerales{" + "rfc=" + rfc + ", nombre=" + nombre + ", apaterno=" + apaterno + ", amaterno=" + amaterno + ", sexo=" + sexo + '}';
+        return nombre + " " + apaterno + " " + amaterno + " " + usuario.getCurp();
     }
 
 }

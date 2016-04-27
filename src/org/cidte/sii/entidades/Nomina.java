@@ -23,43 +23,37 @@ import javax.persistence.Table;
 @Table(name = "Nomina")
 public class Nomina implements Serializable {
 
-     @Id
+    @Id
     @GeneratedValue
     @Column(name = "id_nomina")
     private int id_nomina;
-     
-     @Column(name = "participante")
-    private String participante;
-     
-     @Column(name = "lugar_uaz")
-    private String lugar_uaz;
-     
-     @Column(name = "internos")
-    private String internos;
-     
-     @Column(name = "grupo_laboral")
+
+    @Column(name = "id_contratacion")
+    private int id_contratacion;
+
+    @Column(name = "grupo_laboral")
     private String grupo_laboral;
-     
-     @Column(name = "nivel")
+
+    @Column(name = "nivel")
     private String nivel;
-     
-     @Column(name = "categorial")
+
+    @Column(name = "categorial")
     private String categorial;
-     
-     @Column(name = "forma_contratacion")
+
+    @Column(name = "forma_contratacion")
     private String forma_contratacion;
-     
-     @Column(name = "descripcion")
-    private String descripcion ;
-     
-     @Column(name = "pdf")
-    private byte[] pdf;
+
+    @Column(name = "descripcion")
+    private String descripcion;
+
+    @Column(name = "convenio")
+    private byte[] convenio;
 
     public Nomina() {
     }
 
-    public Nomina(String participante) {
-        this.participante = participante;
+    public Nomina(int id_contratacion) {
+        this.id_contratacion = id_contratacion;
     }
 
     public int getId_nomina() {
@@ -70,28 +64,12 @@ public class Nomina implements Serializable {
         this.id_nomina = id_nomina;
     }
 
-    public String getParticipante() {
-        return participante;
+    public int getId_contratacion() {
+        return id_contratacion;
     }
 
-    public void setParticipante(String participante) {
-        this.participante = participante;
-    }
-
-    public String getLugar_uaz() {
-        return lugar_uaz;
-    }
-
-    public void setLugar_uaz(String lugar_uaz) {
-        this.lugar_uaz = lugar_uaz;
-    }
-
-    public String getInternos() {
-        return internos;
-    }
-
-    public void setInternos(String internos) {
-        this.internos = internos;
+    public void setId_contratacion(int id_contratacion) {
+        this.id_contratacion = id_contratacion;
     }
 
     public String getGrupo_laboral() {
@@ -134,21 +112,20 @@ public class Nomina implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getPdf() {
-        return pdf;
+    public byte[] getConvenio() {
+        return convenio;
     }
 
-    public void setPdf(byte[] pdf) {
-        this.pdf = pdf;
+    public void setConvenio(byte[] convenio) {
+        this.convenio = convenio;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + this.id_nomina;
-        hash = 67 * hash + Objects.hashCode(this.lugar_uaz);
-        hash = 67 * hash + Objects.hashCode(this.internos);
-        hash = 67 * hash + Objects.hashCode(this.grupo_laboral);
+        hash = 59 * hash + this.id_nomina;
+        hash = 59 * hash + Objects.hashCode(this.grupo_laboral);
+        hash = 59 * hash + Objects.hashCode(this.nivel);
         return hash;
     }
 
@@ -167,13 +144,10 @@ public class Nomina implements Serializable {
         if (this.id_nomina != other.id_nomina) {
             return false;
         }
-        if (!Objects.equals(this.lugar_uaz, other.lugar_uaz)) {
-            return false;
-        }
-        if (!Objects.equals(this.internos, other.internos)) {
-            return false;
-        }
         if (!Objects.equals(this.grupo_laboral, other.grupo_laboral)) {
+            return false;
+        }
+        if (!Objects.equals(this.nivel, other.nivel)) {
             return false;
         }
         return true;
@@ -181,8 +155,8 @@ public class Nomina implements Serializable {
 
     @Override
     public String toString() {
-        return "Nomina{" + "id_nomina=" + id_nomina + ", participante=" + participante + ", lugar_uaz=" + lugar_uaz + ", internos=" + internos + ", grupo_laboral=" + grupo_laboral + ", nivel=" + nivel + ", categorial=" + categorial + ", forma_contratacion=" + forma_contratacion + ", descripcion=" + descripcion + '}';
+        return "Nomina{" + "id_nomina=" + id_nomina + ", id_contratacion=" + id_contratacion + ", grupo_laboral=" + grupo_laboral + ", nivel=" + nivel + ", categorial=" + categorial + ", forma_contratacion=" + forma_contratacion + ", descripcion=" + descripcion + ", convenio=" + convenio + '}';
     }
-    
+
     
 }

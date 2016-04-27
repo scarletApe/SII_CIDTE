@@ -81,7 +81,7 @@ public class UsuariosController implements Initializable {
         lbAdminUsrs.setText(msg.getString("administrar_usuarios"));
         btnEliminar.setText(msg.getString("btn_eliminar_usuario"));
         btnModificar.setText(msg.getString("btn_modificar_usuario"));
-        btnNuevo.setText(msg.getString("btn_nuevo_usuario"));
+        btnNuevo.setText(msg.getString("refrescar"));
     }
 
     @FXML
@@ -236,13 +236,13 @@ public class UsuariosController implements Initializable {
             ConectorDatosMedicos cdm = new ConectorDatosMedicos();
             cdm.saveNew(dm);
 
-            Nomina n = new Nomina(u.getCurp());
-            ConectorNomina cn = new ConectorNomina();
-            cn.saveNew(n);
+//            Nomina n = new Nomina(u.getCurp());
+//            ConectorNomina cn = new ConectorNomina();
+//            cn.saveNew(n);
             
-            TipoContratacion tc = new TipoContratacion(u.getCurp());
-            ConectorTipoContratacion ctc = new ConectorTipoContratacion();
-            ctc.saveNew(tc);
+//            TipoContratacion tc = new TipoContratacion(u.getCurp());
+//            ConectorTipoContratacion ctc = new ConectorTipoContratacion();
+//            ctc.saveNew(tc);
             
             handleLimpiar(event);
             fillTable();

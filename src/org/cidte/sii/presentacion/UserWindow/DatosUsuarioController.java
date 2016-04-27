@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -224,9 +225,9 @@ public class DatosUsuarioController implements Initializable {
     @FXML
     private TextField tfCURP;
     @FXML
-    private DatePicker cdVLM;
+    private DatePicker dpVLM;
     @FXML
-    private DatePicker cdVP;
+    private DatePicker dpVP;
     @FXML
     private Label lbTitulo;
     @FXML
@@ -296,7 +297,13 @@ public class DatosUsuarioController implements Initializable {
         tfTCasa.setText(generales.getTelefono_casa() + "");
         tfTCell.setText(generales.getTelefono_cell() + "");
         tfTOficina.setText(generales.getTelefono_oficina() + "");
+
 //        dpFN.getEditor().setText(generales.getFecha_nacimiento().toString());
+        java.sql.Date d = (java.sql.Date) generales.getFecha_nacimiento();
+        if (d != null) {
+            dpFN.setValue(d.toLocalDate());
+        }
+
         cbSexo.setValue(generales.getSexo());
         tfEmail.setText(generales.getEmail());
 
@@ -315,9 +322,20 @@ public class DatosUsuarioController implements Initializable {
         tfNacionalidad.setText(legales.getNacionalidad());
         tfVisa.setText(legales.getVisa_americana());
         tfIDPass.setText(legales.getId_pasaporte());
+
 //        tfVP.setText(legales.getVijencia_pasaporte().toString());
+        d = (java.sql.Date) legales.getVijencia_pasaporte();
+        if (d != null) {
+            dpVP.setValue(d.toLocalDate());
+        }
+
         tfLManejo.setText(legales.getLicencia_manejo());
+
 //        tfVLManejo.setText(legales.getVijencia_licencia().toString());
+        d = (java.sql.Date) legales.getVijencia_licencia();
+        if (d != null) {
+            dpVLM.setValue(d.toLocalDate());
+        }
 
         //datos medicos
         tfNSS.setText(medicos.getNumero_ss());
@@ -384,7 +402,7 @@ public class DatosUsuarioController implements Initializable {
     }
 
     /**
-     * Guardar o "Acatualizar" los datos del usuario
+     * Guardar o "Actualiza" los datos del usuario
      *
      * @param event
      */
@@ -412,11 +430,13 @@ public class DatosUsuarioController implements Initializable {
         generales.setCodigopostal(Integer.parseInt(tfCP.getText()));
         generales.setNumero_ext(Integer.parseInt(tfNExt.getText()));
         generales.setNumero_int(Integer.parseInt(tfNInt.getText()));
-        generales.setTelefono_casa(Integer.parseInt(tfTCasa.getText()));
-        generales.setTelefono_cell(Integer.parseInt(tfTCell.getText()));
-        generales.setTelefono_oficina(Integer.parseInt(tfTOficina.getText()));
+        generales.setTelefono_casa(tfTCasa.getText());
+        generales.setTelefono_cell(tfTCell.getText());
+        generales.setTelefono_oficina(tfTOficina.getText());
 
-//        dpFN.getEditor().setText(generales.getFecha_nacimiento().toString());
+        String fecha = dpFN.getEditor().getText();
+        generales.setFecha_nacimiento((fecha.isEmpty() ? null : new Date(fecha)));
+
         generales.setSexo(cbSexo.getValue());
         generales.setEmail(tfEmail.getText());
         cdgenerales.update(generales);
@@ -434,9 +454,15 @@ public class DatosUsuarioController implements Initializable {
         legales.setNacionalidad(tfNacionalidad.getText());
         legales.setVisa_americana(tfVisa.getText());
         legales.setId_pasaporte(tfIDPass.getText());
-//        legales.setVijencia_pasaporte(new Date(tfVP.getText()));
+
+        fecha = dpVP.getEditor().getText();
+        legales.setVijencia_pasaporte((fecha.isEmpty() ? null : new Date(fecha)));
+
         legales.setLicencia_manejo(tfLManejo.getText());
-//        legales.setVijencia_licencia(new Date(tfVLManejo.getText()));
+
+        fecha = dpVLM.getEditor().getText();
+        legales.setVijencia_licencia((fecha.isEmpty() ? null : new Date(fecha)));
+
         cdlegales.update(legales);
 
         //datos medicos
@@ -501,7 +527,7 @@ public class DatosUsuarioController implements Initializable {
         //los titulos
         lbTitulo.setText(msg.getString("datos_de_mi_cuenta"));
         lbDatosGenerales.setText(msg.getString("datos_generales"));
-        
+
         lbDatosBasicos.setText(msg.getString("datos_basicos"));
         lbDatosPersonales.setText(msg.getString("datos_personales"));
         lbDatosLegales.setText(msg.getString("datos_legales"));

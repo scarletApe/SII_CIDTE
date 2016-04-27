@@ -8,23 +8,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="635.0" stylesheets="@../../css/Metro-UI.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="635.0" stylesheets="@../../css/Metro-UI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cidte.sii.presentacion.UserWindow.RH_NominaController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Nomina - Modo Contratación" textFill="#5a6a6f" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+      <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" text="Nomina - Modo Contratación" textFill="#5a6a6f" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Separator layoutY="60.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
-      <Button layoutX="485.0" layoutY="16.0" mnemonicParsing="false" styleClass="btn" text="Actualizar" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="btnActualizar" layoutX="485.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleAcutalizar" styleClass="btn" text="Actualizar" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="20.0" />
       <GridPane hgap="10.0" layoutX="14.0" layoutY="75.0" prefHeight="313.0" prefWidth="572.0" vgap="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="70.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,33 +33,31 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Participante:" />
-            <ComboBox maxWidth="400.0" prefWidth="150.0" GridPane.columnIndex="1" />
-            <Label text="Interno o Externo:" GridPane.rowIndex="1" />
-            <Label text="Interno:" GridPane.rowIndex="2" />
-            <Label text="Grupo Laboral:" GridPane.rowIndex="3" />
-            <Label text="Nivel:" GridPane.rowIndex="4" />
-            <Label text="Categorial:" GridPane.rowIndex="5" />
-            <Label text="Forma de Cotratación:" GridPane.rowIndex="6" />
-            <Label text="Descripción:" GridPane.rowIndex="7" />
-            <Label text="Contrato (PDF):" GridPane.rowIndex="8" />
-            <ComboBox maxWidth="400.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox maxWidth="400.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Label fx:id="lbParticipante" text="Participante:" />
+            <ComboBox fx:id="cbParticipante" maxWidth="400.0" onAction="#handleCambiarParticipante" prefWidth="150.0" GridPane.columnIndex="1" />
+            <Label fx:id="lbIDContratacion" text="Contratación:" GridPane.rowIndex="1" />
+            <Label fx:id="lbGrupoLaboral" text="Grupo Laboral:" GridPane.rowIndex="2" />
+            <Label fx:id="lbNivel" text="Nivel:" GridPane.rowIndex="3" />
+            <Label fx:id="lbCategorial" text="Categorial:" GridPane.rowIndex="4" />
+            <Label fx:id="lbFormaContratacion" text="Forma de Contratación:" GridPane.rowIndex="5" />
+            <Label fx:id="lbDescripcion" text="Descripción:" GridPane.rowIndex="6" />
+            <Label fx:id="lbValidacionDoc" text="Validación Documental:" GridPane.rowIndex="7" />
+            <TextField fx:id="tfGrupoLaboral" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfNivel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfCategorial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfFormaContratacion" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="tfDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="ivPDF" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../imagenes/gato.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" styleClass="btn" text="Elegir" />
+                  <Button fx:id="btnElegir" mnemonicParsing="false" onAction="#handleElegir" styleClass="btn" text="Elegir" />
                </children>
             </HBox>
+            <TextField fx:id="tfIDContratacion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -8,12 +8,14 @@
 package org.cidte.sii.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -27,30 +29,41 @@ public class TipoContratacion implements Serializable {
     @GeneratedValue
     @Column(name = "id_contratacion")
     private int id_contratacion;
-    
-    @Column(name = "participante")
-    private String participante;
+
+    @Column(name = "curp")
+    private String curp;
+
+    @Column(name = "tipo_participacion")
+    private String tipo_participacion;
     
     @Column(name = "horas")
     private String horas;
-    
-    @Column(name = "lugar_uaz")
-    private String lugar_uaz;
-    
+
+    @Column(name = "interno")
+    private String interno;
+
     @Column(name = "institucion")
     private String institucion;
-    
+
     @Column(name = "area")
     private String area;
-    
+
     @Column(name = "programa")
     private String programa;
+
+    @Column(name = "fecha_inicio")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha_inicio;
+
+    @Column(name = "fecha_terminacion")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha_terminacion;
 
     public TipoContratacion() {
     }
 
-    public TipoContratacion(String participante) {
-        this.participante = participante;
+    public TipoContratacion(String curp) {
+        this.curp = curp;
     }
 
     public int getId_contratacion() {
@@ -61,12 +74,12 @@ public class TipoContratacion implements Serializable {
         this.id_contratacion = id_contratacion;
     }
 
-    public String getParticipante() {
-        return participante;
+    public String getCurp() {
+        return curp;
     }
 
-    public void setParticipante(String participante) {
-        this.participante = participante;
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
 
     public String getHoras() {
@@ -77,12 +90,12 @@ public class TipoContratacion implements Serializable {
         this.horas = horas;
     }
 
-    public String getLugar_uaz() {
-        return lugar_uaz;
+    public String getInterno() {
+        return interno;
     }
 
-    public void setLugar_uaz(String lugar_uaz) {
-        this.lugar_uaz = lugar_uaz;
+    public void setInterno(String interno) {
+        this.interno = interno;
     }
 
     public String getInstitucion() {
@@ -109,42 +122,35 @@ public class TipoContratacion implements Serializable {
         this.programa = programa;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.id_contratacion;
-        hash = 53 * hash + Objects.hashCode(this.horas);
-        hash = 53 * hash + Objects.hashCode(this.lugar_uaz);
-        return hash;
+    public Date getFecha_inicio() {
+        return fecha_inicio;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TipoContratacion other = (TipoContratacion) obj;
-        if (this.id_contratacion != other.id_contratacion) {
-            return false;
-        }
-        if (!Objects.equals(this.horas, other.horas)) {
-            return false;
-        }
-        if (!Objects.equals(this.lugar_uaz, other.lugar_uaz)) {
-            return false;
-        }
-        return true;
+    public void setFecha_inicio(Date fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public Date getFecha_terminacion() {
+        return fecha_terminacion;
+    }
+
+    public void setFecha_terminacion(Date fecha_terminacion) {
+        this.fecha_terminacion = fecha_terminacion;
+    }
+
+    public String getTipo_participacion() {
+        return tipo_participacion;
+    }
+
+    public void setTipo_participacion(String tipo_participacion) {
+        this.tipo_participacion = tipo_participacion;
     }
 
     @Override
     public String toString() {
-        return "TipoContratacion{" + "id_contratacion=" + id_contratacion + ", participante=" + participante + ", horas=" + horas + ", lugar_uaz=" + lugar_uaz + ", institucion=" + institucion + ", area=" + area + ", programa=" + programa + '}';
+        return interno + " " + institucion + " " + area + " " + programa;
     }
+
+    
 
 }

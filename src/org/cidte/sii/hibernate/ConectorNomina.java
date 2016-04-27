@@ -39,11 +39,11 @@ public class ConectorNomina {
         return (ArrayList<Nomina>) HibernateConector.executeHQLQuery(hql);
     }
     
-    public Nomina get(String curp) {
+    public Nomina get(int id_tipo_contratacion) {
         ArrayList<Nomina> result;
         Nomina u = null;
 
-        String hql = "From Nomina where participante like '" + curp + "'";
+        String hql = "From Nomina where id_contratacion like '" + id_tipo_contratacion + "'";
         Session session = HibernateConector.factory.openSession();
         Transaction tx = null;
         try {

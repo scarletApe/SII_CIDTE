@@ -44,7 +44,7 @@ public class ConectorTipoContratacion {
         ArrayList<TipoContratacion> result;
         TipoContratacion u = null;
 
-        String hql = "From TipoContratacion where participante like '" + curp + "'";
+        String hql = "From TipoContratacion where curp like '" + curp + "'";
         Session session = HibernateConector.factory.openSession();
         Transaction tx = null;
         try {

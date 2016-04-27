@@ -157,7 +157,7 @@
             <TextField fx:id="tfLManejo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="lbVijenciaLicenciaManejo" text="Vigencia Lic. Ma:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <DatePicker fx:id="dpVP" maxWidth="260.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <DatePicker fx:id="cdVLM" maxWidth="260.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dpVLM" maxWidth="260.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label fx:id="lbDatosMedicos" layoutX="11.0" layoutY="865.0" text="Datos Medicos:" textFill="#5a6a6f">

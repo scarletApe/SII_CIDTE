@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author manuelmartinez
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     private String curp;
     private String username;
@@ -97,7 +97,8 @@ public class Usuario implements Serializable{
 
     @Override
     public String toString() {
-        return "Usuario{" + "curp=" + curp + ", username=" + username + ", password=" + password + ", rol=" + rol + '}';
+//        return "Usuario{" + "curp=" + curp + ", username=" + username + ", password=" + password + ", rol=" + rol + '}';
+        return curp;
     }
 
 }

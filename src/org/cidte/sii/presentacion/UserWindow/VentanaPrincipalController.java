@@ -18,14 +18,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.cidte.sii.entidades.DatosGenerales;
 import org.cidte.sii.entidades.Usuario;
@@ -141,6 +146,7 @@ public class VentanaPrincipalController implements Initializable {
         lbFecha.setText(msg.getString("fecha") + ": " + df.format(cal.getTime()));
 
         ivUsuario.setImage(setFoto(gen));
+        roundImage(ivUsuario);
 
         ObservableList<String> opciones
                 = FXCollections.observableArrayList(
@@ -249,10 +255,10 @@ public class VentanaPrincipalController implements Initializable {
         }
     }
 
-    private void setPane(AnchorPane papa, AnchorPane toput) {
-        toput.setPrefSize(papa.getWidth(), papa.getHeight());
-        toput.setMinSize(papa.getWidth(), papa.getHeight());
-        papa.getChildren().setAll(toput);
+    private void setPane(AnchorPane papa, AnchorPane to_put) {
+        to_put.setPrefSize(papa.getWidth(), papa.getHeight());
+        to_put.setMinSize(papa.getWidth(), papa.getHeight());
+        papa.getChildren().setAll(to_put);
     }
 
     private static Image getImageView(String imageName) {
@@ -271,5 +277,32 @@ public class VentanaPrincipalController implements Initializable {
                 img = null;
         }
         return img;
+    }
+
+    private void roundImage(ImageView imageView) {
+        // set a clip to apply rounded border to the original image.
+        Rectangle clip = new Rectangle(
+                imageView.getFitWidth(), imageView.getFitHeight()
+//                imageView.getImage().getRequestedWidth(), imageView.getImage().getRequestedHeight()
+//                imageView.getImage().getWidth(), imageView.getImage().getWidth()
+           
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        imageView.setClip(clip);
+
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = imageView.snapshot(parameters, null);
+
+        // remove the rounding clip so that our effect can show through.
+        imageView.setClip(null);
+
+        // apply a shadow effect.
+//        imageView.setEffect(new DropShadow(20, Color.BLACK));
+
+        // store the rounded image in the imageView.
+        imageView.setImage(image);
     }
 }

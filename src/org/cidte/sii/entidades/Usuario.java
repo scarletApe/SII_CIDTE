@@ -12,12 +12,13 @@ import java.util.Objects;
  *
  * @author manuelmartinez
  */
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Writable {
 
     private String curp;
     private String username;
     private String password;
     private String rol;
+//    private Organizacion organizacion;
 
 //    private TipoUsuario tipoUsario;
     public Usuario() {
@@ -62,6 +63,14 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
+//    public Organizacion getOrganizacion() {
+//        return organizacion;
+//    }
+//
+//    public void setOrganizacion(Organizacion organizacion) {
+//        this.organizacion = organizacion;
+//    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -83,7 +92,7 @@ public class Usuario implements Serializable {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (this.curp != other.curp) {
+        if (!this.curp.equals(other.curp)) {
             return false;
         }
         if (!Objects.equals(this.username, other.username)) {
@@ -99,6 +108,16 @@ public class Usuario implements Serializable {
     public String toString() {
 //        return "Usuario{" + "curp=" + curp + ", username=" + username + ", password=" + password + ", rol=" + rol + '}';
         return curp;
+    }
+
+    @Override
+    public Object[] getAsArray() {
+        return new Object[]{curp, username, password, rol};
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"Curp", "Username", "Password", "Rol"};
     }
 
 }

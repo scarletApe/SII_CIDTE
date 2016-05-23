@@ -13,6 +13,11 @@
       <property name="username" column="username" type="string"/> 
       <property name="password" column="password" type="string"/> 
       <property name="rol"      column="rol"      type="string"/> 
+      
+      <!--
+      <many-to-one name="organizacion" column="id_organizacion" 
+        class="org.cidte.sii.entidades.Organizacion" not-null="true"/>
+        -->
 
    </class>
 

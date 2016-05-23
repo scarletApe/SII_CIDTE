@@ -16,11 +16,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.cidte.sii.entidades.Usuario;
 import org.cidte.sii.presentacion.SII_CIDTE;
 
@@ -120,8 +124,16 @@ public class AdministrarController implements Initializable {
     }
 
     @FXML
-    void handleLogout(ActionEvent event) {
-
+    void handleLogout(ActionEvent event) throws IOException {
+        //hide this current window (if this is whant you want
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
+        //esto muestra la ventana
+        Stage stage = new Stage(StageStyle.DECORATED);
+        Parent root = FXMLLoader.load(getClass().getResource("/org/cidte/sii/presentacion/LogIn.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void loadAllPanes() {

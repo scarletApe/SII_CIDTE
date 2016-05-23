@@ -18,7 +18,13 @@
                      <children>
                         <AnchorPane fx:id="paneTabel" layoutY="91.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
                            <children>
-                              <TableView fx:id="tablaUsuarios" layoutX="7.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0" />
+                              <TableView fx:id="tablaUsuarios" layoutX="7.0" layoutY="7.0" prefHeight="434.0" prefWidth="1130.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0" />
+                              <HBox layoutX="902.0" layoutY="450.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                                 <children>
+                                    <Button fx:id="btnPDF" layoutX="902.0" layoutY="450.0" mnemonicParsing="false" onAction="#handlePDF" styleClass="btn" text="Exportar PDF" />
+                                    <Button fx:id="btnXLS" layoutX="1012.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleXLS" styleClass="btn" text="Exportar XLS" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                         <HBox layoutX="776.0" layoutY="48.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="48.0">

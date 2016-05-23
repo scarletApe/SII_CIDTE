@@ -18,6 +18,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,6 +35,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.cidte.sii.entidades.DatosGenerales;
 import org.cidte.sii.entidades.Usuario;
 import org.cidte.sii.hibernate.ConectorDatosGenerales;
@@ -97,6 +101,7 @@ public class VentanaPrincipalController implements Initializable {
 
     private AnchorPane rh_tc_pane;
     private AnchorPane rh_nomina_pane;
+    private AnchorPane rh_permiso_pane;
 
     /**
      * Initializes the controller class.
@@ -151,7 +156,8 @@ public class VentanaPrincipalController implements Initializable {
         ObservableList<String> opciones
                 = FXCollections.observableArrayList(
                         msg.getString("tipo_contratacion"),
-                        msg.getString("nomina")
+                        msg.getString("nomina"),
+                        "Permiso"
                 );
         listRH.setItems(opciones);
 
@@ -210,6 +216,12 @@ public class VentanaPrincipalController implements Initializable {
             rh_nomina_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
 //            apaneRH.getChildren().setAll(rh_tc_pane);
 
+            //rh_permiso_pane
+            loader = new FXMLLoader(getClass()
+                    .getResource("/org/cidte/sii/presentacion/UserWindow/RH_Permiso.fxml"));
+            rh_permiso_pane = (AnchorPane) loader.load();
+            rh_permiso_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
+
         } catch (Exception e) {
             System.err.println("Error cargando los panes " + e);
         }
@@ -234,8 +246,18 @@ public class VentanaPrincipalController implements Initializable {
     }
 
     @FXML
-    private void handleSalir(ActionEvent event) {
-        System.exit(0);
+    private void handleSalir(ActionEvent event) throws IOException {
+        //hide this current window (if this is whant you want
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
+        //esto muestra la ventana
+        Stage stage = new Stage(StageStyle.DECORATED);
+        Parent root = FXMLLoader.load(getClass().getResource("/org/cidte/sii/presentacion/LogIn.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        
+//        System.exit(0);
     }
 
     public void handleRHListMenu() {
@@ -249,7 +271,8 @@ public class VentanaPrincipalController implements Initializable {
             }
             break;
             case 2: {
-
+                //rh_permiso_pane
+                setPane(apaneRH, rh_permiso_pane);
             }
             break;
         }
@@ -283,9 +306,9 @@ public class VentanaPrincipalController implements Initializable {
         // set a clip to apply rounded border to the original image.
         Rectangle clip = new Rectangle(
                 imageView.getFitWidth(), imageView.getFitHeight()
-//                imageView.getImage().getRequestedWidth(), imageView.getImage().getRequestedHeight()
-//                imageView.getImage().getWidth(), imageView.getImage().getWidth()
-           
+        //                imageView.getImage().getRequestedWidth(), imageView.getImage().getRequestedHeight()
+        //                imageView.getImage().getWidth(), imageView.getImage().getWidth()
+
         );
         clip.setArcWidth(20);
         clip.setArcHeight(20);
@@ -301,7 +324,6 @@ public class VentanaPrincipalController implements Initializable {
 
         // apply a shadow effect.
 //        imageView.setEffect(new DropShadow(20, Color.BLACK));
-
         // store the rounded image in the imageView.
         imageView.setImage(image);
     }

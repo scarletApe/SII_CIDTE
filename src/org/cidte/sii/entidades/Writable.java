@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.cidte.sii.negocio;
+package org.cidte.sii.entidades;
 
 /**
  *
  * @author juanmartinez
  */
-public class PersonalizeManager {
-    
+public interface Writable {
+    public Object[] getAsArray();
+    public String[] getNames();
 }

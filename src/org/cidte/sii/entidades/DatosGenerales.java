@@ -234,7 +234,7 @@ public class DatosGenerales {
 
     @Override
     public String toString() {
-        return nombre + " " + apaterno + " " + amaterno + " " + usuario.getCurp();
+        return apaterno + " " + amaterno + " " + nombre + " Curp:" + usuario.getCurp();
     }
 
 }

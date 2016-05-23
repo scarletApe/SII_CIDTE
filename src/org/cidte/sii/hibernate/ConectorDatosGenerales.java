@@ -33,7 +33,7 @@ public class ConectorDatosGenerales {
     }
 
     public ArrayList<DatosGenerales> getAll() {
-        String hql = "From DatosGenerales";
+        String hql = "From DatosGenerales DG ORDER BY DG.apaterno ASC";
         return (ArrayList<DatosGenerales>) HibernateConector.executeHQLQuery(hql);
     }
 
@@ -68,7 +68,7 @@ public class ConectorDatosGenerales {
     public ArrayList<DatosGenerales> getAll2() {
         ArrayList<DatosGenerales> result = null;
 
-        String hql = "From DatosGenerales";
+        String hql = "From DatosGenerales DG ORDER BY DG.apaterno ASC";
         Session session = HibernateConector.factory.openSession();
         Transaction tx = null;
         try {

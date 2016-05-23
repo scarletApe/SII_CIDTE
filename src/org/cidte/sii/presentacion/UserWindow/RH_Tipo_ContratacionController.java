@@ -140,7 +140,7 @@ public class RH_Tipo_ContratacionController implements Initializable {
                             tfHoras.setText("40");
                             tfHoras.setDisable(true);
                             break;
-                        case "Tiempo Medio":
+                        case "Medio Tiempo":
                             tfHoras.setText("20");
                             tfHoras.setDisable(true);
                             break;
@@ -161,6 +161,17 @@ public class RH_Tipo_ContratacionController implements Initializable {
                 );
         cbIntExt.setItems(int_ext);
         cbIntExt.setValue(int_ext.get(0));
+        cbIntExt.getSelectionModel().selectedItemProperty()
+                .addListener((ObservableValue<? extends String> o, String ov, String nv) -> {
+                    switch (nv) {
+                        case "Interno":
+//                            tfInstitucion.setText("SPAUAZ");
+                            break;
+                        case "Externo":
+                            tfInstitucion.setText("");
+                            break;
+                    }
+                });
     }
 
     @FXML

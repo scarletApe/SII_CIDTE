@@ -6,7 +6,9 @@
 package org.cidte.sii.hibernate;
 
 import java.util.List;
+import org.cidte.sii.entidades.DocumentoPDF;
 import org.cidte.sii.entidades.Nomina;
+import org.cidte.sii.entidades.Permiso;
 import org.cidte.sii.entidades.TipoContratacion;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -32,6 +34,8 @@ public class HibernateConector {
                     //addPackage("com.xyz") //add package if used. 
                     addAnnotatedClass(TipoContratacion.class)
                     .addAnnotatedClass(Nomina.class)
+                    .addAnnotatedClass(Permiso.class)
+                    .addAnnotatedClass(DocumentoPDF.class)
                     .buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 

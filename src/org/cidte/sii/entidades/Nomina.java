@@ -46,8 +46,9 @@ public class Nomina implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "convenio")
-    private byte[] convenio;
+    @Column(name = "id_documentopdf")
+    private int id_documentopdf;
+    
 
     public Nomina() {
     }
@@ -112,12 +113,12 @@ public class Nomina implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getConvenio() {
-        return convenio;
+    public int getConvenio() {
+        return id_documentopdf;
     }
 
-    public void setConvenio(byte[] convenio) {
-        this.convenio = convenio;
+    public void setConvenio(int id_documentopdf) {
+        this.id_documentopdf = id_documentopdf;
     }
 
     @Override
@@ -155,7 +156,10 @@ public class Nomina implements Serializable {
 
     @Override
     public String toString() {
-        return "Nomina{" + "id_nomina=" + id_nomina + ", id_contratacion=" + id_contratacion + ", grupo_laboral=" + grupo_laboral + ", nivel=" + nivel + ", categorial=" + categorial + ", forma_contratacion=" + forma_contratacion + ", descripcion=" + descripcion + ", convenio=" + convenio + '}';
+        return "Nomina{" + "id_nomina=" + id_nomina + ", id_contratacion=" + 
+                id_contratacion + ", grupo_laboral=" + grupo_laboral + ", nivel="
+                + nivel + ", categorial=" + categorial + ", forma_contratacion=" 
+                + forma_contratacion + ", descripcion=" + descripcion  + '}';
     }
 
     

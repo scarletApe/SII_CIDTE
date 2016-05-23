@@ -5,14 +5,22 @@
  */
 package org.cidte.sii.presentacion.AdminWindow;
 
+import com.itextpdf.text.DocumentException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -24,24 +32,25 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import org.cidte.sii.entidades.DatosGenerales;
 import org.cidte.sii.entidades.DatosLegales;
 import org.cidte.sii.entidades.DatosMedicos;
 import org.cidte.sii.entidades.DatosPersonales;
-import org.cidte.sii.entidades.Nomina;
-import org.cidte.sii.entidades.TipoContratacion;
 import org.cidte.sii.entidades.Usuario;
+import org.cidte.sii.entidades.Writable;
 import org.cidte.sii.hibernate.ConectorDatosGenerales;
 import org.cidte.sii.hibernate.ConectorDatosLegales;
 import org.cidte.sii.hibernate.ConectorDatosMedicos;
 import org.cidte.sii.hibernate.ConectorDatosPersonales;
-import org.cidte.sii.hibernate.ConectorNomina;
-import org.cidte.sii.hibernate.ConectorTipoContratacion;
 import org.cidte.sii.hibernate.ConectorTipoUsuario;
 import org.cidte.sii.hibernate.ConectorUsuario;
 import org.cidte.sii.negocio.LogInManager;
+import org.cidte.sii.negocio.PDFWriter;
+import org.cidte.sii.negocio.XLSWriter;
 import org.cidte.sii.presentacion.SII_CIDTE;
 
 /**
@@ -67,9 +76,9 @@ public class UsuariosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         conusuario = new ConectorUsuario();
         conTU = new ConectorTipoUsuario();
-        
+
         gato = new javafx.scene.image.Image("/org/cidte/sii/imagenes/gato.png");
-       
+
         setLabels();
         createTable();
         fillTable();
@@ -148,6 +157,11 @@ public class UsuariosController implements Initializable {
     private Button btnModificar;
 
     @FXML
+    private Button btnXLS;
+    @FXML
+    private Button btnPDF;
+
+    @FXML
     void handleEliminar(ActionEvent event) {
         Usuario u = tablaUsuarios.getSelectionModel().getSelectedItem();
         if (u != null) {
@@ -195,8 +209,6 @@ public class UsuariosController implements Initializable {
         String nu = tfNU.getText();
         String contrasena = pfCont.getText();
         String rol = cbRol.getSelectionModel().getSelectedItem();
-        
-        
 
         if (curp.isEmpty()
                 || nu.isEmpty()
@@ -204,7 +216,7 @@ public class UsuariosController implements Initializable {
                 || rol.isEmpty()) {
             return;
         }
-        
+
         String pass = new LogInManager().encriptarContrasena(contrasena);
 
         if (modificar) {
@@ -219,19 +231,19 @@ public class UsuariosController implements Initializable {
         } else {
             Usuario u = new Usuario(curp, nu, pass, rol);
             conusuario.saveNew(u);
-            
+
             DatosGenerales dg = new DatosGenerales(u);
             ConectorDatosGenerales cdg = new ConectorDatosGenerales();
             cdg.saveNew(dg);
-            
+
             DatosLegales dl = new DatosLegales(u);
             ConectorDatosLegales cdl = new ConectorDatosLegales();
             cdl.saveNew(dl);
-            
+
             DatosPersonales dp = new DatosPersonales(u);
             ConectorDatosPersonales cdp = new ConectorDatosPersonales();
             cdp.saveNew(dp);
-            
+
             DatosMedicos dm = new DatosMedicos(u);
             ConectorDatosMedicos cdm = new ConectorDatosMedicos();
             cdm.saveNew(dm);
@@ -239,11 +251,9 @@ public class UsuariosController implements Initializable {
 //            Nomina n = new Nomina(u.getCurp());
 //            ConectorNomina cn = new ConectorNomina();
 //            cn.saveNew(n);
-            
 //            TipoContratacion tc = new TipoContratacion(u.getCurp());
 //            ConectorTipoContratacion ctc = new ConectorTipoContratacion();
 //            ctc.saveNew(tc);
-            
             handleLimpiar(event);
             fillTable();
         }
@@ -251,7 +261,7 @@ public class UsuariosController implements Initializable {
 
     private void createTable() {
         ImageView iv;
-        
+
         TableColumn colID = new TableColumn("Curp");
         colID.setMinWidth(200);
         colID.setCellValueFactory(
@@ -364,4 +374,57 @@ public class UsuariosController implements Initializable {
         cbRol.setItems(roles);
         cbRol.setValue("Reg");
     }
+
+    @FXML
+    public void handleXLS(ActionEvent event) {
+        ArrayList<Usuario> usuarios = conusuario.getAll();
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory
+                = directoryChooser.showDialog(((Node) (event.getSource())).getScene().getWindow());
+
+        if (selectedDirectory == null) {
+            return;
+        }
+        String path = selectedDirectory.getAbsolutePath();
+
+        ArrayList<Writable> towrite = new ArrayList<>(usuarios.size());
+        for (int i = 0; i < usuarios.size(); i++) {
+            towrite.add(usuarios.get(i));
+        }
+
+        XLSWriter xw = new XLSWriter();
+        xw.writeXLS(towrite, path + "/", "Usuarios");
+    }
+
+    @FXML
+    public void handlePDF(ActionEvent event)  {
+        ArrayList<Usuario> usuarios = conusuario.getAll();
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory
+                = directoryChooser.showDialog(((Node) (event.getSource())).getScene().getWindow());
+
+        if (selectedDirectory == null) {
+            return;
+        }
+        String path = selectedDirectory.getAbsolutePath();
+
+        ArrayList<Writable> towrite = new ArrayList<>(usuarios.size());
+        for (int i = 0; i < usuarios.size(); i++) {
+            towrite.add(usuarios.get(i));
+        }
+        LogInManager logInManager = new LogInManager();
+        Image logo = logInManager.getLogo();
+
+        PDFWriter xw = new PDFWriter();
+        try {
+            xw.writePDF(towrite, path + "/", "Usuarios",SwingFXUtils.fromFXImage(logo, null));
+        } catch (DocumentException | FileNotFoundException ex) {
+            Logger.getLogger(UsuariosController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UsuariosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

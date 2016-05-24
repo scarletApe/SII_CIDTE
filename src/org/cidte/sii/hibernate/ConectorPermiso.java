@@ -1,4 +1,3 @@
-
 //<editor-fold defaultstate="collapsed" desc="licence">
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,12 +5,10 @@
  * and open the template in the editor.
  */
 //</editor-fold>
-
-
 package org.cidte.sii.hibernate;
 
 import java.util.ArrayList;
-import org.cidte.sii.entidades.Nomina;
+
 import org.cidte.sii.entidades.Permiso;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -40,7 +37,7 @@ public class ConectorPermiso {
         String hql = "From Permiso";
         return (ArrayList<Permiso>) HibernateConector.executeHQLQuery(hql);
     }
-    
+
     public Permiso get(String curp) {
         ArrayList<Permiso> result;
         Permiso u = null;
@@ -56,7 +53,7 @@ public class ConectorPermiso {
             if (result != null && !result.isEmpty()) {
                 u = result.get(0);
             }
-            
+
             tx.commit();
         } catch (HibernateException he) {
             if (tx != null) {
@@ -67,5 +64,31 @@ public class ConectorPermiso {
             session.close();
         }
         return u;
+    }
+
+    public ArrayList<Permiso> getAllFrom(String curp) {
+        ArrayList<Permiso> result = null;
+
+        String hql = "From Permiso where curp like '" + curp + "'";
+        Session session = HibernateConector.factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery(hql);
+            result = (ArrayList) query.list();
+
+//			if (result != null && !result.isEmpty()) {
+//				u = result.get(0);
+//			}
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.err.println(he.getMessage());
+        } finally {
+            session.close();
+        }
+        return result;
     }
 }

@@ -7,6 +7,7 @@ package org.cidte.sii.presentacion.UserWindow;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,34 +20,29 @@ import javafx.scene.control.Button;
  */
 public class MenuController implements Initializable {
 
-    @FXML
-    private Button btnAdmon;
-    @FXML
-    private Button btnConta;
-    @FXML
-    private Button btnProd;
-    @FXML
-    private Button btnRepor;
+	@FXML
+	private Button btnAdmon;
+	@FXML
+	private Button btnConta;
+	@FXML
+	private Button btnProd;
+	@FXML
+	private Button btnRepor;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+	/**
+	 * Initializes the controller class.
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// TODO
+	}
 
-    @FXML
-    private Button btnLogout;
+	@FXML
+	private Button btnLogout;
 
-   
+	@FXML
+	void handleLogout(ActionEvent event) {
 
-    @FXML
-    void handleLogout(ActionEvent event) {
-
-    }
+	}
 
 }
-
-    
-

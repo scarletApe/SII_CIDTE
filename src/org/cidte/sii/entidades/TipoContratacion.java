@@ -9,7 +9,7 @@ package org.cidte.sii.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,132 +25,130 @@ import javax.persistence.Temporal;
 @Table(name = "TipoContratacion")
 public class TipoContratacion implements Serializable {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id_contratacion")
-    private int id_contratacion;
+	@Id
+	@GeneratedValue
+	@Column(name = "id_contratacion")
+	private int id_contratacion;
 
-    @Column(name = "curp")
-    private String curp;
+	@Column(name = "curp")
+	private String curp;
 
-    @Column(name = "tipo_participacion")
-    private String tipo_participacion;
-    
-    @Column(name = "horas")
-    private String horas;
+	@Column(name = "tipo_participacion")
+	private String tipo_participacion;
 
-    @Column(name = "interno")
-    private String interno;
+	@Column(name = "horas")
+	private String horas;
 
-    @Column(name = "institucion")
-    private String institucion;
+	@Column(name = "interno")
+	private String interno;
 
-    @Column(name = "area")
-    private String area;
+	@Column(name = "institucion")
+	private String institucion;
 
-    @Column(name = "programa")
-    private String programa;
+	@Column(name = "area")
+	private String area;
 
-    @Column(name = "fecha_inicio")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha_inicio;
+	@Column(name = "programa")
+	private String programa;
 
-    @Column(name = "fecha_terminacion")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha_terminacion;
+	@Column(name = "fecha_inicio")
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date fecha_inicio;
 
-    public TipoContratacion() {
-    }
+	@Column(name = "fecha_terminacion")
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date fecha_terminacion;
 
-    public TipoContratacion(String curp) {
-        this.curp = curp;
-    }
+	public TipoContratacion() {
+	}
 
-    public int getId_contratacion() {
-        return id_contratacion;
-    }
+	public TipoContratacion(String curp) {
+		this.curp = curp;
+	}
 
-    public void setId_contratacion(int id_contratacion) {
-        this.id_contratacion = id_contratacion;
-    }
+	public int getId_contratacion() {
+		return id_contratacion;
+	}
 
-    public String getCurp() {
-        return curp;
-    }
+	public void setId_contratacion(int id_contratacion) {
+		this.id_contratacion = id_contratacion;
+	}
 
-    public void setCurp(String curp) {
-        this.curp = curp;
-    }
+	public String getCurp() {
+		return curp;
+	}
 
-    public String getHoras() {
-        return horas;
-    }
+	public void setCurp(String curp) {
+		this.curp = curp;
+	}
 
-    public void setHoras(String horas) {
-        this.horas = horas;
-    }
+	public String getHoras() {
+		return horas;
+	}
 
-    public String getInterno() {
-        return interno;
-    }
+	public void setHoras(String horas) {
+		this.horas = horas;
+	}
 
-    public void setInterno(String interno) {
-        this.interno = interno;
-    }
+	public String getInterno() {
+		return interno;
+	}
 
-    public String getInstitucion() {
-        return institucion;
-    }
+	public void setInterno(String interno) {
+		this.interno = interno;
+	}
 
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
-    }
+	public String getInstitucion() {
+		return institucion;
+	}
 
-    public String getArea() {
-        return area;
-    }
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+	public String getArea() {
+		return area;
+	}
 
-    public String getPrograma() {
-        return programa;
-    }
+	public void setArea(String area) {
+		this.area = area;
+	}
 
-    public void setPrograma(String programa) {
-        this.programa = programa;
-    }
+	public String getPrograma() {
+		return programa;
+	}
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
-    }
+	public void setPrograma(String programa) {
+		this.programa = programa;
+	}
 
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
-    }
+	public Date getFecha_inicio() {
+		return fecha_inicio;
+	}
 
-    public Date getFecha_terminacion() {
-        return fecha_terminacion;
-    }
+	public void setFecha_inicio(Date fecha_inicio) {
+		this.fecha_inicio = fecha_inicio;
+	}
 
-    public void setFecha_terminacion(Date fecha_terminacion) {
-        this.fecha_terminacion = fecha_terminacion;
-    }
+	public Date getFecha_terminacion() {
+		return fecha_terminacion;
+	}
 
-    public String getTipo_participacion() {
-        return tipo_participacion;
-    }
+	public void setFecha_terminacion(Date fecha_terminacion) {
+		this.fecha_terminacion = fecha_terminacion;
+	}
 
-    public void setTipo_participacion(String tipo_participacion) {
-        this.tipo_participacion = tipo_participacion;
-    }
+	public String getTipo_participacion() {
+		return tipo_participacion;
+	}
 
-    @Override
-    public String toString() {
-        return interno + " " + institucion + " " + area + " " + programa;
-    }
+	public void setTipo_participacion(String tipo_participacion) {
+		this.tipo_participacion = tipo_participacion;
+	}
 
-    
+	@Override
+	public String toString() {
+		return interno + " " + institucion + " " + area + " " + programa;
+	}
 
 }

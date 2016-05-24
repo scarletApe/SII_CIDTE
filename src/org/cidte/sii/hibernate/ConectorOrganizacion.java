@@ -6,6 +6,7 @@
 package org.cidte.sii.hibernate;
 
 import java.util.ArrayList;
+
 import org.cidte.sii.entidades.Organizacion;
 
 /**
@@ -14,21 +15,21 @@ import org.cidte.sii.entidades.Organizacion;
  */
 public class ConectorOrganizacion {
 
-    public Object saveNew(Organizacion r) {
-        return HibernateConector.saveObject(r);
-    }
+	public Object saveNew(Organizacion r) {
+		return HibernateConector.saveObject(r);
+	}
 
-    public void update(Organizacion r) {
-        HibernateConector.updateObject(r);
-    }
+	public void update(Organizacion r) {
+		HibernateConector.updateObject(r);
+	}
 
-    public void delete(Organizacion r) {
-        HibernateConector.deleteObject(r);
-    }
+	public void delete(Organizacion r) {
+		HibernateConector.deleteObject(r);
+	}
 
-    public ArrayList<Organizacion> getAll() {
-        String hql = "From Organizacion";
-        return (ArrayList<Organizacion>) HibernateConector.executeHQLQuery(hql);
-    }
+	public ArrayList<Organizacion> getAll() {
+		String hql = "From Organizacion";
+		return (ArrayList<Organizacion>) HibernateConector.executeHQLQuery(hql);
+	}
 
 }

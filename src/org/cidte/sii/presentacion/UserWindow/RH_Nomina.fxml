@@ -47,14 +47,10 @@
             <TextField fx:id="tfCategorial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="tfFormaContratacion" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="tfDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <children>
-                  <ImageView fx:id="ivPDF" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../imagenes/gato.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="btnElegir" mnemonicParsing="false" onAction="#handleElegir" styleClass="btn" text="Elegir" />
+                  <Hyperlink fx:id="hlShowDoc" onAction="#handleShowDoc" text="Ningun Documento" />
                </children>
             </HBox>
             <TextField fx:id="tfIDContratacion" GridPane.columnIndex="1" GridPane.rowIndex="1" />

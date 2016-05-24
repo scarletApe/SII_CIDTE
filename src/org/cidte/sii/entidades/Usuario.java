@@ -14,110 +14,111 @@ import java.util.Objects;
  */
 public class Usuario implements Serializable, Writable {
 
-    private String curp;
-    private String username;
-    private String password;
-    private String rol;
-//    private Organizacion organizacion;
+	private String curp;
+	private String username;
+	private String password;
+	private String rol;
+	// private Organizacion organizacion;
 
-//    private TipoUsuario tipoUsario;
-    public Usuario() {
-    }
+	// private TipoUsuario tipoUsario;
+	public Usuario() {
+	}
 
-    public Usuario(String curp, String username, String password, String rol) {
-        this.curp = curp;
-        this.username = username;
-        this.password = password;
-        this.rol = rol;
-    }
+	public Usuario(String curp, String username, String password, String rol) {
+		this.curp = curp;
+		this.username = username;
+		this.password = password;
+		this.rol = rol;
+	}
 
-    public String getCurp() {
-        return curp;
-    }
+	public String getCurp() {
+		return curp;
+	}
 
-    public void setCurp(String curp) {
-        this.curp = curp;
-    }
+	public void setCurp(String curp) {
+		this.curp = curp;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getRol() {
-        return rol;
-    }
+	public String getRol() {
+		return rol;
+	}
 
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
 
-//    public Organizacion getOrganizacion() {
-//        return organizacion;
-//    }
-//
-//    public void setOrganizacion(Organizacion organizacion) {
-//        this.organizacion = organizacion;
-//    }
+	// public Organizacion getOrganizacion() {
+	// return organizacion;
+	// }
+	//
+	// public void setOrganizacion(Organizacion organizacion) {
+	// this.organizacion = organizacion;
+	// }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.curp);
-        hash = 11 * hash + Objects.hashCode(this.username);
-        hash = 11 * hash + Objects.hashCode(this.password);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 11 * hash + Objects.hashCode(this.curp);
+		hash = 11 * hash + Objects.hashCode(this.username);
+		hash = 11 * hash + Objects.hashCode(this.password);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (!this.curp.equals(other.curp)) {
-            return false;
-        }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Usuario other = (Usuario) obj;
+		if (!this.curp.equals(other.curp)) {
+			return false;
+		}
+		if (!Objects.equals(this.username, other.username)) {
+			return false;
+		}
+		if (!Objects.equals(this.password, other.password)) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-//        return "Usuario{" + "curp=" + curp + ", username=" + username + ", password=" + password + ", rol=" + rol + '}';
-        return curp;
-    }
+	@Override
+	public String toString() {
+		// return "Usuario{" + "curp=" + curp + ", username=" + username + ",
+		// password=" + password + ", rol=" + rol + '}';
+		return curp;
+	}
 
-    @Override
-    public Object[] getAsArray() {
-        return new Object[]{curp, username, password, rol};
-    }
+	@Override
+	public Object[] getAsArray() {
+		return new Object[] { curp, username, password, rol };
+	}
 
-    @Override
-    public String[] getNames() {
-        return new String[]{"Curp", "Username", "Password", "Rol"};
-    }
+	@Override
+	public String[] getNames() {
+		return new String[] { "Curp", "Username", "Password", "Rol" };
+	}
 
 }

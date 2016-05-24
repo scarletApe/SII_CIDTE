@@ -68,12 +68,12 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </GridPane>
-      <Label layoutX="136.0" layoutY="27.0" text="Bienvenido Usuario" textFill="WHITE">
+      <Label layoutX="136.0" layoutY="27.0" text="Bienvenido al Sistema" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnLogout" layoutX="32.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/buttonCircle.css">
+      <Button fx:id="btnLogout" layoutX="32.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" styleClass="btncircle" stylesheets="@../../css/buttonCircle.css">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>

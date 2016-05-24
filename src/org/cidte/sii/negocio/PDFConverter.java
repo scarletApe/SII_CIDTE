@@ -20,33 +20,36 @@ import java.io.IOException;
  */
 public class PDFConverter {
 
-    public  byte[] pdfToArray(String archivo) throws FileNotFoundException, IOException {
+	public byte[] pdfToArray(String archivo) throws FileNotFoundException, IOException {
 
-        File file = new File(archivo);
+		File file = new File(archivo);
 
-        FileInputStream fis = new FileInputStream(file);
-        //System.out.println(file.exists() + "!!");
+		FileInputStream fis = new FileInputStream(file);
+		// System.out.println(file.exists() + "!!");
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buf = new byte[1024];
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		byte[] buf = new byte[1024];
 
-        for (int readNum; (readNum = fis.read(buf)) != -1;) {
-            bos.write(buf, 0, readNum); //no doubt here is 0
-            //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
-//            System.out.println("read " + readNum + " bytes,");
-        }
+		for (int readNum; (readNum = fis.read(buf)) != -1;) {
+			bos.write(buf, 0, readNum); // no doubt here is 0
+			// Writes len bytes from the specified byte array starting at offset
+			// off to this byte array output stream.
+			// System.out.println("read " + readNum + " bytes,");
+		}
 
-        byte[] bytes = bos.toByteArray();
+		byte[] bytes = bos.toByteArray();
+		
+		fis.close();
 
-        return bytes;
-    }
+		return bytes;
+	}
 
-    public void arrayToPDF(byte[] bytes, String archivo) throws FileNotFoundException, IOException {
-        //below is the different part
-        File someFile = new File(archivo);
-        FileOutputStream fos = new FileOutputStream(someFile);
-        fos.write(bytes);
-        fos.flush();
-        fos.close();
-    }
+	public void arrayToPDF(byte[] bytes, String archivo) throws FileNotFoundException, IOException {
+		// below is the different part
+		File someFile = new File(archivo);
+		FileOutputStream fos = new FileOutputStream(someFile);
+		fos.write(bytes);
+		fos.flush();
+		fos.close();
+	}
 }

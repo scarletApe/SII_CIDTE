@@ -11,6 +11,14 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import org.cidte.sii.entidades.DatosGenerales;
+import org.cidte.sii.entidades.Usuario;
+import org.cidte.sii.hibernate.ConectorDatosGenerales;
+import org.cidte.sii.negocio.ImageManager;
+import org.cidte.sii.negocio.LogInManager;
+import org.cidte.sii.presentacion.SII_CIDTE;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +35,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -36,14 +43,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.cidte.sii.entidades.DatosGenerales;
-import org.cidte.sii.entidades.Usuario;
-import org.cidte.sii.hibernate.ConectorDatosGenerales;
-import org.cidte.sii.negocio.ImageManager;
-import org.cidte.sii.negocio.Localizer;
-import org.cidte.sii.negocio.LogInManager;
-import org.cidte.sii.presentacion.LogInController;
-import org.cidte.sii.presentacion.SII_CIDTE;
 
 /**
  * FXML Controller class
@@ -95,13 +94,14 @@ public class VentanaPrincipalController implements Initializable {
 
     private Usuario usuario;
     private AnchorPane dashboardPane;
-    private MenuController dashboardController;
+//	private MenuController dashboardController;
     private AnchorPane usuarioPane;
     private DatosUsuarioController usuarioController;
 
     private AnchorPane rh_tc_pane;
     private AnchorPane rh_nomina_pane;
     private AnchorPane rh_permiso_pane;
+    private AnchorPane rh_permiso_tabla_pane;
 
     /**
      * Initializes the controller class.
@@ -153,18 +153,18 @@ public class VentanaPrincipalController implements Initializable {
         ivUsuario.setImage(setFoto(gen));
         roundImage(ivUsuario);
 
-        ObservableList<String> opciones
-                = FXCollections.observableArrayList(
-                        msg.getString("tipo_contratacion"),
-                        msg.getString("nomina"),
-                        "Permiso"
-                );
+        ObservableList<String> opciones = FXCollections.observableArrayList(
+                msg.getString("tipo_contratacion"),
+                msg.getString("nomina"), 
+                "Permiso",
+                "Permisos Registrados");
         listRH.setItems(opciones);
 
         listRH.getSelectionModel().selectedItemProperty()
                 .addListener((ObservableValue<? extends String> o, String ov, String nv) -> {
                     handleRHListMenu();
                 });
+        listRH.getSelectionModel().select(0);
     }
 
     private void setLabels() {
@@ -184,44 +184,47 @@ public class VentanaPrincipalController implements Initializable {
 
     private void loadPanes() {
         try {
-            //dashboard pane
-            FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/org/cidte/sii/presentacion/UserWindow/Menu.fxml"));
+            // dashboard pane
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/cidte/sii/presentacion/UserWindow/Menu.fxml"));
             dashboardPane = (AnchorPane) loader.load();
-            dashboardController = loader.<MenuController>getController();
+//			dashboardController = loader.<MenuController> getController();
             dashboardPane.setPrefSize(apaneDashboard.getWidth(), apaneDashboard.getHeight());
             apaneDashboard.getChildren().setAll(dashboardPane);
 
-            //datos de usuario pane
-            loader = new FXMLLoader(getClass()
-                    .getResource("/org/cidte/sii/presentacion/UserWindow/DatosUsuario.fxml"));
+            // datos de usuario pane
+            loader = new FXMLLoader(getClass().getResource("/org/cidte/sii/presentacion/UserWindow/DatosUsuario.fxml"));
             usuarioPane = (AnchorPane) loader.load();
             usuarioController = loader.<DatosUsuarioController>getController();
             usuarioPane.setPrefSize(apaneDashboard.getWidth() - 15, apaneMiCuenta.getHeight());
             apaneMiCuenta.getChildren().setAll(usuarioPane);
             usuarioController.initData(usuario, this);
 
-            //******************************************************************
-            loader = new FXMLLoader(getClass()
-                    .getResource("/org/cidte/sii/presentacion/UserWindow/RH_Tipo_Contratacion.fxml"));
+            // ******************************************************************
+            loader = new FXMLLoader(
+                    getClass().getResource("/org/cidte/sii/presentacion/UserWindow/RH_Tipo_Contratacion.fxml"));
             rh_tc_pane = (AnchorPane) loader.load();
-            RH_Tipo_ContratacionController rhtcc = loader.<RH_Tipo_ContratacionController>getController();
+//			RH_Tipo_ContratacionController rhtcc = loader.<RH_Tipo_ContratacionController> getController();
             rh_tc_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
             apaneRH.getChildren().setAll(rh_tc_pane);
 
-            loader = new FXMLLoader(getClass()
-                    .getResource("/org/cidte/sii/presentacion/UserWindow/RH_Nomina.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/org/cidte/sii/presentacion/UserWindow/RH_Nomina.fxml"));
             rh_nomina_pane = (AnchorPane) loader.load();
-//            RH_Tipo_ContratacionController rhtcc = loader.<RH_Tipo_ContratacionController>getController();
+            // RH_Tipo_ContratacionController rhtcc =
+            // loader.<RH_Tipo_ContratacionController>getController();
             rh_nomina_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
-//            apaneRH.getChildren().setAll(rh_tc_pane);
+            // apaneRH.getChildren().setAll(rh_tc_pane);
 
-            //rh_permiso_pane
-            loader = new FXMLLoader(getClass()
-                    .getResource("/org/cidte/sii/presentacion/UserWindow/RH_Permiso.fxml"));
+            // rh_permiso_pane
+            loader = new FXMLLoader(getClass().getResource("/org/cidte/sii/presentacion/UserWindow/RH_Permiso.fxml"));
             rh_permiso_pane = (AnchorPane) loader.load();
             rh_permiso_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
 
+            //rh_permiso_tabla_pane
+            loader = new FXMLLoader(getClass().getResource("/org/cidte/sii/presentacion/UserWindow/RH_PermisoTabla.fxml"));
+            rh_permiso_tabla_pane = (AnchorPane) loader.load();
+            rh_permiso_tabla_pane.setPrefSize(apaneRH.getWidth(), apaneRH.getHeight());
+            
         } catch (Exception e) {
             System.err.println("Error cargando los panes " + e);
         }
@@ -247,17 +250,17 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void handleSalir(ActionEvent event) throws IOException {
-        //hide this current window (if this is whant you want
+        // hide this current window (if this is whant you want
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
-        //esto muestra la ventana
+
+        // esto muestra la ventana
         Stage stage = new Stage(StageStyle.DECORATED);
         Parent root = FXMLLoader.load(getClass().getResource("/org/cidte/sii/presentacion/LogIn.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
-//        System.exit(0);
+
+        // System.exit(0);
     }
 
     public void handleRHListMenu() {
@@ -271,10 +274,13 @@ public class VentanaPrincipalController implements Initializable {
             }
             break;
             case 2: {
-                //rh_permiso_pane
+                // rh_permiso_pane
                 setPane(apaneRH, rh_permiso_pane);
             }
             break;
+            case 3:
+                setPane(apaneRH, rh_permiso_tabla_pane);
+                break;
         }
     }
 
@@ -304,10 +310,10 @@ public class VentanaPrincipalController implements Initializable {
 
     private void roundImage(ImageView imageView) {
         // set a clip to apply rounded border to the original image.
-        Rectangle clip = new Rectangle(
-                imageView.getFitWidth(), imageView.getFitHeight()
-        //                imageView.getImage().getRequestedWidth(), imageView.getImage().getRequestedHeight()
-        //                imageView.getImage().getWidth(), imageView.getImage().getWidth()
+        Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight()
+        // imageView.getImage().getRequestedWidth(),
+        // imageView.getImage().getRequestedHeight()
+        // imageView.getImage().getWidth(), imageView.getImage().getWidth()
 
         );
         clip.setArcWidth(20);
@@ -323,7 +329,7 @@ public class VentanaPrincipalController implements Initializable {
         imageView.setClip(null);
 
         // apply a shadow effect.
-//        imageView.setEffect(new DropShadow(20, Color.BLACK));
+        // imageView.setEffect(new DropShadow(20, Color.BLACK));
         // store the rounded image in the imageView.
         imageView.setImage(image);
     }

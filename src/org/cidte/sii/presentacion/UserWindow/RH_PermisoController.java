@@ -12,6 +12,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.cidte.sii.entidades.DatosGenerales;
+import org.cidte.sii.entidades.DocumentoPDF;
+import org.cidte.sii.entidades.Permiso;
+import org.cidte.sii.entidades.Usuario;
+import org.cidte.sii.hibernate.ConectorDatosGenerales;
+import org.cidte.sii.hibernate.ConectorDocumentoPDF;
+import org.cidte.sii.hibernate.ConectorPermiso;
+import org.cidte.sii.negocio.PDFConverter;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,14 +35,6 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import org.cidte.sii.entidades.DatosGenerales;
-import org.cidte.sii.entidades.DocumentoPDF;
-import org.cidte.sii.entidades.Permiso;
-import org.cidte.sii.entidades.Usuario;
-import org.cidte.sii.hibernate.ConectorDatosGenerales;
-import org.cidte.sii.hibernate.ConectorDocumentoPDF;
-import org.cidte.sii.hibernate.ConectorPermiso;
-import org.cidte.sii.negocio.PDFConverter;
 
 /**
  * FXML Controller class
@@ -80,6 +82,9 @@ public class RH_PermisoController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,18 +92,14 @@ public class RH_PermisoController implements Initializable {
         cp = new ConectorPermiso();
         cdpdf = new ConectorDocumentoPDF();
 
-        //llenar comobox de participantes
+        // llenar comobox de participantes
         ConectorDatosGenerales cdg = new ConectorDatosGenerales();
         ArrayList<DatosGenerales> all = cdg.getAll2();
         cbSolicitador.getItems().clear();
         cbSolicitador.getItems().addAll(all);
 
-        //llenar el combobox de autorizado
-        ObservableList<String> autorizado
-                = FXCollections.observableArrayList(
-                        "Si",
-                        "No"
-                );
+        // llenar el combobox de autorizado
+        ObservableList<String> autorizado = FXCollections.observableArrayList("Si", "No");
         cbAuto.setItems(autorizado);
         cbAuto.setValue(autorizado.get(0));
     }
@@ -116,10 +117,7 @@ public class RH_PermisoController implements Initializable {
         String autorizado = cbAuto.getSelectionModel().getSelectedItem();
         String fauto = dpFechaAuto.getEditor().getText();
 
-        if (motivo.isEmpty()
-                || fsolicitud.isEmpty()
-                || autorizado.isEmpty()
-                || fauto.isEmpty()) {
+        if (motivo.isEmpty() || fsolicitud.isEmpty() || autorizado.isEmpty() || fauto.isEmpty()) {
             return;
         }
         boolean autorizado_bool;
@@ -137,42 +135,42 @@ public class RH_PermisoController implements Initializable {
 
         }
 
-        Permiso p = cp.get(u.getCurp());
-        if (p == null) {
-            //no hay entonces crear
-            p = new Permiso();
-            p.setCurp(u.getCurp());
-            p.setMotivo_solicitud(motivo);
-            p.setFecha_solicitud((fsolicitud.isEmpty() ? null : new Date(fsolicitud)));
-            p.setAutorizado(autorizado_bool);
-            p.setFecha_autorizacion((fauto.isEmpty() ? null : new Date(fauto)));
+//		Permiso p = cp.get(u.getCurp());
+//		if (p == null) {
+        // crear uno nuevo
+        Permiso p = new Permiso();
+        p.setCurp(u.getCurp());
+        p.setMotivo_solicitud(motivo);
+        p.setFecha_solicitud((fsolicitud.isEmpty() ? null : new Date(fsolicitud)));
+        p.setAutorizado(autorizado_bool);
+        p.setFecha_autorizacion((fauto.isEmpty() ? null : new Date(fauto)));
 
-            if (current_doc != null) {
-                cdpdf.saveNew(current_doc);
-                p.setDocumento(current_doc.getId_documentopdf());
-            }
-
-            cp.saveNew(p);
-            limpiar();
-        } else {
-            //actualizarlo
-            p.setCurp(u.getCurp());
-            p.setMotivo_solicitud(motivo);
-            p.setFecha_solicitud((fsolicitud.isEmpty() ? null : new Date(fsolicitud)));
-            p.setAutorizado(autorizado_bool);
-            p.setFecha_autorizacion((fauto.isEmpty() ? null : new Date(fauto)));
-
-            if (current_doc != null) {
-                cdpdf.update(current_doc);
-                p.setDocumento(current_doc.getId_documentopdf());
-            }
-//            else {
-//                p.setDocumento(0);
-//            }
-
-            cp.update(p);
-            limpiar();
+        if (current_doc != null) {
+            cdpdf.saveNew(current_doc);
+            p.setDocumento(current_doc.getId_documentopdf());
         }
+
+        cp.saveNew(p);
+        limpiar();
+//		} else {
+//			// actualizarlo
+//			p.setCurp(u.getCurp());
+//			p.setMotivo_solicitud(motivo);
+//			p.setFecha_solicitud((fsolicitud.isEmpty() ? null : new Date(fsolicitud)));
+//			p.setAutorizado(autorizado_bool);
+//			p.setFecha_autorizacion((fauto.isEmpty() ? null : new Date(fauto)));
+//
+//			if (current_doc != null) {
+//				cdpdf.update(current_doc);
+//				p.setDocumento(current_doc.getId_documentopdf());
+//			}
+//			// else {
+//			// p.setDocumento(0);
+//			// }
+//
+//			cp.update(p);
+//			limpiar();
+//		}
     }
 
     @FXML
@@ -181,10 +179,9 @@ public class RH_PermisoController implements Initializable {
         fileChooser.setTitle("Open PDF File");
 
         // Set extension filter
-        List<String> l = new ArrayList();
+        List<String> l = new ArrayList<String>();
         l.add("*.pdf");
-        FileChooser.ExtensionFilter extFilter
-                = new FileChooser.ExtensionFilter("Document files (pdf)", l);
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Document files (pdf)", l);
         fileChooser.getExtensionFilters().add(extFilter);
 
         // Show open file dialog
@@ -227,47 +224,49 @@ public class RH_PermisoController implements Initializable {
     private void handleCambioSolicitante(ActionEvent event) {
         limpiar();
 
-        DatosGenerales dg = cbSolicitador.getSelectionModel().getSelectedItem();
-        if (dg == null) {
-            return;
-        }
-
-        Permiso p = cp.get(dg.getUsuario().getCurp());
-        if (p == null) {
-
-        } else {
-            //fill the info
-
-            cbAuto.setValue((p.isAutorizado()) ? "Si" : "No");
-            tfMotivo.setText(p.getMotivo_solicitud());
-
-            java.sql.Date d = (java.sql.Date) p.getFecha_solicitud();
-            if (d != null) {
-                dpFechaSol.setValue(d.toLocalDate());
-            }
-
-            d = (java.sql.Date) p.getFecha_solicitud();
-            if (d != null) {
-                dpFechaAuto.setValue(d.toLocalDate());
-            }
-
-            int documento = p.getDocumento();
-
-            DocumentoPDF get = cdpdf.get(documento);
-            if (get == null) {
-                //no hay documento
-                current_doc = null;
-            } else {
-                hlShowDoc.setText(get.getNombre());
-                current_doc = get;
-            }
-        }
+//		DatosGenerales dg = cbSolicitador.getSelectionModel().getSelectedItem();
+//		if (dg == null) {
+//			return;
+//		}
+//
+//		Permiso p = cp.get(dg.getUsuario().getCurp());
+//		if (p == null) {
+//
+//		} else {
+//			// fill the info
+//
+//			cbAuto.setValue((p.isAutorizado()) ? "Si" : "No");
+//			tfMotivo.setText(p.getMotivo_solicitud());
+//
+//			java.sql.Date d = (java.sql.Date) p.getFecha_solicitud();
+//			if (d != null) {
+//				dpFechaSol.setValue(d.toLocalDate());
+//			}
+//
+//			d = (java.sql.Date) p.getFecha_solicitud();
+//			if (d != null) {
+//				dpFechaAuto.setValue(d.toLocalDate());
+//			}
+//
+//			int documento = p.getDocumento();
+//
+//			DocumentoPDF get = cdpdf.get(documento);
+//			if (get == null) {
+//				// no hay documento
+//				current_doc = null;
+//			} else {
+//				hlShowDoc.setText(get.getNombre());
+//				current_doc = get;
+//			}
+//		}
     }
 
     private void limpiar() {
-//        cbSolicitador.setValue(null);
+        // cbSolicitador.setValue(null);
         cbAuto.setValue(null);
         tfMotivo.setText("");
+        dpFechaAuto.getEditor().setText("");
+        dpFechaSol.getEditor().setText("");
 
         current_doc = null;
         hlShowDoc.setText("Ningun Documento");

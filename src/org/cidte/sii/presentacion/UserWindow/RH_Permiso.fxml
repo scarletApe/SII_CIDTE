@@ -9,13 +9,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../css/Metro-UI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.cidte.sii.presentacion.UserWindow.RH_PermisoController">
    <children>
-      <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" text="Registrar Permiso" textFill="#5a6a6f">
+      <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" text="Registrar Permiso" textFill="#5a6a6f" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Separator layoutY="62.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
-      <Button fx:id="btnActualizar" layoutX="491.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleActualizar" styleClass="btn" text="Actualizar" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="18.0" />
+      <Button fx:id="btnActualizar" layoutX="491.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleActualizar" styleClass="btn" text="Crear" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="18.0" />
       <GridPane layoutX="15.0" layoutY="72.0" prefHeight="297.0" prefWidth="561.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="70.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="100.0" />

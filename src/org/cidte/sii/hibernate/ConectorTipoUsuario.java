@@ -5,8 +5,8 @@
  */
 package org.cidte.sii.hibernate;
 
-
 import java.util.ArrayList;
+
 import org.cidte.sii.entidades.TipoUsuario;
 
 /**
@@ -15,20 +15,20 @@ import org.cidte.sii.entidades.TipoUsuario;
  */
 public class ConectorTipoUsuario {
 
-    public Object saveNew(TipoUsuario r) {
-        return HibernateConector.saveObject(r);
-    }
+	public Object saveNew(TipoUsuario r) {
+		return HibernateConector.saveObject(r);
+	}
 
-    public void update(TipoUsuario r) {
-        HibernateConector.updateObject(r);
-    }
+	public void update(TipoUsuario r) {
+		HibernateConector.updateObject(r);
+	}
 
-    public void delete(TipoUsuario r) {
-        HibernateConector.deleteObject(r);
-    }
+	public void delete(TipoUsuario r) {
+		HibernateConector.deleteObject(r);
+	}
 
-    public ArrayList<TipoUsuario> getAll() {
-        String hql = "From TipoUsuario";
-        return (ArrayList<TipoUsuario>) HibernateConector.executeHQLQuery(hql);
-    }
+	public ArrayList<TipoUsuario> getAll() {
+		String hql = "From TipoUsuario";
+		return (ArrayList<TipoUsuario>) HibernateConector.executeHQLQuery(hql);
+	}
 }

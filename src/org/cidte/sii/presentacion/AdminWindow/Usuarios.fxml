@@ -18,7 +18,7 @@
                      <children>
                         <AnchorPane fx:id="paneTabel" layoutY="91.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
                            <children>
-                              <TableView fx:id="tablaUsuarios" layoutX="7.0" layoutY="7.0" prefHeight="434.0" prefWidth="1130.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0" />
+                              <TableView fx:id="tablaUsuarios" layoutX="7.0" layoutY="7.0" prefHeight="434.0" prefWidth="1130.0" style="-fx-border-color: lightgray;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
                               <HBox layoutX="902.0" layoutY="450.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                                  <children>
                                     <Button fx:id="btnPDF" layoutX="902.0" layoutY="450.0" mnemonicParsing="false" onAction="#handlePDF" styleClass="btn" text="Exportar PDF" />
@@ -29,13 +29,12 @@
                         </AnchorPane>
                         <HBox layoutX="776.0" layoutY="48.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="48.0">
                            <children>
-                              <Button fx:id="btnEliminar" defaultButton="true" layoutX="738.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleEliminar" prefHeight="27.0" styleClass="btn" text="Eliminar Usuario" />
+                              <Button fx:id="btnEliminar" defaultButton="true" disable="true" layoutX="738.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleEliminar" opacity="0.0" prefHeight="27.0" styleClass="btn" text="Eliminar Usuario" />
                               <Button fx:id="btnModificar" defaultButton="true" layoutX="904.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleModificar" prefHeight="27.0" styleClass="btn" text="Modificar Usuario" />
                               <Button fx:id="btnNuevo" defaultButton="true" layoutX="1066.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleNuevo" prefHeight="27.0" styleClass="btn" text="Nuevo Usuario" />
                            </children>
                         </HBox>
-                        <ProgressBar fx:id="bar" layoutY="84.0" prefHeight="3.0" progress="0.0" />
-                        <Label fx:id="lbAdminUsrs" layoutX="14.0" layoutY="24.0" text="Administrar Usuarios" textFill="#2b579a">
+                        <Label fx:id="lbAdminUsrs" layoutX="14.0" layoutY="24.0" text="Administrar Usuarios" textFill="#2b579a" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="24.0">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -49,7 +48,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <GridPane hgap="10.0" layoutX="14.0" layoutY="55.0" prefHeight="263.0" prefWidth="1087.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="55.0">
+                        <GridPane hgap="10.0" layoutX="14.0" layoutY="55.0" prefHeight="263.0" prefWidth="1087.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="90.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -76,13 +75,13 @@
                               <ComboBox fx:id="cbRol" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
-                        <Label fx:id="lbTitleUsuarios" layoutX="14.0" layoutY="14.0" text="Datos del Usuario" textFill="#2b579a">
+                        <Label fx:id="lbTitleUsuarios" layoutX="14.0" layoutY="14.0" text="Crear Nuevo Usuario" textFill="#2b579a" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="24.0">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="48.0" />
                            </font>
                         </Label>
-                        <Separator layoutY="52.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                        <HBox layoutX="930.0" layoutY="16.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="16.0">
+                        <Separator layoutY="52.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="83.0" />
+                        <HBox layoutX="930.0" layoutY="16.0" spacing="10.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="48.0">
                            <children>
                               <Button fx:id="btnLimpiar" defaultButton="true" mnemonicParsing="false" onAction="#handleLimpiar" prefHeight="27.0" styleClass="btn" text="Limpiar" />
                               <Button fx:id="btnGuardar" defaultButton="true" mnemonicParsing="false" onAction="#handleGuardar" prefHeight="27.0" styleClass="btn" text="Guardar" />

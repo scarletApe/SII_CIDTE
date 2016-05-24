@@ -10,6 +10,7 @@ package org.cidte.sii.entidades;
  * @author juanmartinez
  */
 public interface Writable {
-    public Object[] getAsArray();
-    public String[] getNames();
+	public Object[] getAsArray();
+
+	public String[] getNames();
 }
